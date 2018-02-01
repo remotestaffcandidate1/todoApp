@@ -9,24 +9,31 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TodosComponent implements OnInit {
   todoItem:string;
+  todoEditItem:any;
   todolist:any;
   todochecklist:any;
   todocompleted:boolean;
   todoCompleted:number;
+  todoEdit:boolean;
   
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.todoItem = '';
+    this.todoEditItem = {
+      item: '',
+      index:0
+  };
     this.todolist = [];
     this.todocompleted = false;
     this.checkItems();
     this.todoCompleted = 0;
+    this.todoEdit = false;
   }
   addToDo(event){
-  
-    if(this.todocompleted){
+    if(this.todoItem !== ''){//prevent empty rows
+       if(this.todocompleted){
       this.todochecklist = {
         todoItem: this.todoItem,
         completed:true
@@ -50,6 +57,7 @@ export class TodosComponent implements OnInit {
       });
       this.todoItem = ''; //reset to blank
       event.preventDefault();
+    }
   }
 
   removeToDo(index){
@@ -91,6 +99,26 @@ export class TodosComponent implements OnInit {
       this.checkItems();
   
     }, 1000);
+  }
+
+  setEditItems(index,oldVal){
+    this.todoEditItem = {
+      item: oldVal,
+      index:index
+  };
+  this.todoEdit = true;
+  }
+  editItems(newVal){
+    if(this.todoEditItem.item !== ''){//prevent empty rows
+    this.todolist[this.todoEditItem.index].todoItem = newVal;
+
+    this.todoEditItem = {
+      item: '',
+      index:0
+  };
+  this.todoEdit = false;
+
+}
   }
   
 

@@ -1,5 +1,6 @@
 <div class="container">
     <h1>ToDo List</h1>
+    <div *ngIf="!todoEdit">
 
         <form (submit)="addToDo($event)">
         <input  autofocus=""  [(ngModel)]="todoItem" (keyup.enter)="todoItem=''" class="textfield" name="todoItem">
@@ -10,7 +11,7 @@
   <li class="mark"> <input type="checkbox" class="checkbox" [(ngModel)]="todocompleted" (click)="markAll(todocompleted)" />Mark all as complete</li>
     <li *ngFor="let todo of todolist; let i=index" (mouseenter)="mouseIn = true;" (mouseleave)="mouseIn = false;">
         <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" />
-      <span [ngClass]="{'checked': todo.completed}" >{{ todo.todoItem }}</span>
+      <span [ngClass]="{'checked': todo.completed}" (dblclick)="setEditItems(i,todo.todoItem)">{{ todo.todoItem }}</span>
       <button (click)="removeToDo(i)" [hidden]="!mouseIn" class="rmv">remove</button>
         </li>
 </ul>
@@ -23,6 +24,13 @@
   <span *ngFor="let todo of todolist  | slice:0:1; ">
         <button (click)="clearCompleted()" *ngIf="todo.completed">Clear Completed Results</button>
   </span>
+  </div>
+
+  <div class="edit_container" *ngIf="todoEdit">
+      <input autofocus=""  [(ngModel)]="todoEditItem.item" (keyup.enter)="editItems(todoEditItem.item)" (blur)="editItems(todoEditItem.item)" class="textfield" name="todoEditItem.item" #editItem>
+  </div>
 
 </div>
+
+
 
