@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Response;
 
 class ApiController extends Controller
 {
@@ -20,19 +21,20 @@ class ApiController extends Controller
     }
     public function showlist()
     {
-        return "Show ToDo Items"; 
+        $todoList = array('data' => [['todoItem' => 'Fetch Item 1 from Dingo API', 'completed' => true],['todoItem' => 'Fetch Item 2 from Dingo API', 'completed' => true]]);
+        return Response::json($todoList);
     }
     public function addlist()
     {
-        return "add items"; 
+        return Response::json(array(['data' => 'Adding Items from Dingo API...']));
     }
     public function updatelist()
     {
-        return "update ToDo Items"; 
+        return "Adding Items from Dingo API..."; 
     }
     public function deletelist()
     {
-        return "Delete ToDo Items"; 
+        return "Adding Items from Dingo API..."; 
     }
 
     /**

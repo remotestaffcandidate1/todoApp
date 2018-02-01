@@ -16,9 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-$api->version('v1',function($api) {
+$api->version('v1',['middleware' => 'cors'], function($api) {
     $api->get('showlist', 'App\Http\Controllers\ApiController@showlist');
-    $api->post('addlist', 'App\Http\Controllers\ApiController@addlist');
+    $api->get('addlist', 'App\Http\Controllers\ApiController@addlist');
     $api->put('updatelist', 'App\Http\Controllers\ApiController@updatelist');
     $api->delete('deletelist', 'App\Http\Controllers\ApiController@deletelist');
 });

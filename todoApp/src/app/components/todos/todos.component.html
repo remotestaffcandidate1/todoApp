@@ -11,7 +11,7 @@
   <li class="mark"> <input type="checkbox" class="checkbox" [(ngModel)]="todocompleted" (click)="markAll(todocompleted)" />Mark all as complete</li>
     <li *ngFor="let todo of todolist; let i=index" (mouseenter)="mouseIn = true;" (mouseleave)="mouseIn = false;">
         <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" />
-      <span [ngClass]="{'checked': todo.completed}" (dblclick)="setEditItems(i,todo.todoItem)">{{ todo.todoItem }}</span>
+      <span [ngClass]="{'checked': todo.completed}" (dblclick)="setEditItems(i,todo.todoItem)" class="item">{{ todo.todoItem }}</span>
       <button (click)="removeToDo(i)" [hidden]="!mouseIn" class="rmv">remove</button>
         </li>
 </ul>

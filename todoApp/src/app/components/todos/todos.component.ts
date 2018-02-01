@@ -27,6 +27,7 @@ export class TodosComponent implements OnInit {
   };
     this.todolist = [];
     this.todocompleted = false;
+    this.loadList();
     this.checkItems();
     this.todoCompleted = 0;
     this.todoEdit = false;
@@ -47,13 +48,10 @@ export class TodosComponent implements OnInit {
       this.todolist.unshift(this.todochecklist); //directly push the data to arraylist without API validation due to time limitation
 
        // post data to Dingo API
-      this.http.post('http://localhost:8000/api/addlist',this.todochecklist).subscribe(data => {
-        console.log('Response from Dingo API: ',data); //get response
+      this.http.get('http://localhost:8000/api/addlist').subscribe(data => { //revert to get since its just a dummy add to api
+        console.log('Add to Todo list response from Dingo API: ',data); //get response
       //perform additional checking here, if data is successfully added, 
       // proceed with pushing the item to the todochecklist
-
-      
-
       });
       this.todoItem = ''; //reset to blank
       event.preventDefault();
@@ -120,6 +118,27 @@ export class TodosComponent implements OnInit {
 
 }
   }
+
+loadList(){
+    // post data to Dingo API
+    this.http.get('http://localhost:8000/api/showlist').subscribe(result => {
+       var items = JSON.parse(JSON.stringify(result)); //parse to convert object from api to json
+      if(items.data.length > 0){ //only load to view if there is response from API
+        for(var i = 0; i < items.data.length;i++){
+          this.todochecklist = {
+          todoItem: items.data[i].todoItem,
+          completed:items.data[i].completed
+      }
+        this.todolist.unshift(this.todochecklist); 
+
+        }
+      }
+   
+
+   
+
+  });
+}
   
 
 

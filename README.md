@@ -14,6 +14,10 @@ Navigate to "todo"
 Serve API
 > php artisan serve
 
+To check available routes
+> php artisan api:routes
+
+
 To Access Dingo API, navigate to http://localhost:8000/[API PARAMETERS]
 
 API PARAMS:
