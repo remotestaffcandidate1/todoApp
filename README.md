@@ -57,3 +57,11 @@ Serve FrontEnd App
 
 http://localhost:4200/
 
+<br>
+NOTES:
+
+<ol>
+<li>API is not configured to local DB, toDo items were defined as static items</li>
+<li>API integration is configured for initial app loading(angular), it loads 2 items in for the toDo</li>
+<li>Functions for DingoAPI is just prepared for CRUD operations</li>
+</ol>
