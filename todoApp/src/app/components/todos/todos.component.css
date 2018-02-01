@@ -1,0 +1,11 @@
+.container{
+    text-align:center;
+    width:300px;margin:0px auto;
+    border:1px solid #eee;
+    padding:10px;
+}
+ul{list-style-type: none;}
+li{text-align:left;padding:5px;border-bottom:1px solid #ccc; }
+.rmv{float:right;}
+.checked{text-decoration: line-through;}
+.mark{font-weight:bold;}
